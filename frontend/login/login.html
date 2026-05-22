@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="login.css">
+<title>🚀 EcoAlerta | Login</title>
+
+</head>
+<body>
+
+<div class="container">
+
+<div class="left">
+    <h1>EcoAlerta</h1>
+    <p>
+        Plataforma inteligente para registro de desperdício de água e energia.
+        Conecte cidadãos e gestão urbana através de dados.
+    </p>
+</div>
+
+<div class="right">
+
+<div class="tabs">
+    <button id="tabLogin" class="active" onclick="mostrarLogin()">Login</button>
+    <button id="tabCadastro" onclick="mostrarCadastro()">Cadastro</button>
+</div>
+
+<!-- LOGIN -->
+<form id="loginForm" class="active">
+    <h2>Entrar</h2>
+
+    <input type="email" id="loginEmail" placeholder="Seu email" required>
+    <input type="password" id="loginSenha" placeholder="Sua senha" required>
+
+    <button class="submit" type="submit">Entrar</button>
+</form>
+
+<!-- CADASTRO -->
+<form id="cadastroForm">
+    <h2>Criar Conta</h2>
+
+    <input type="text" id="nome" placeholder="Nome completo" required>
+    <input type="email" id="email" placeholder="Seu email" required>
+    <input type="password" id="senha" placeholder="Senha segura" required>
+    <input type="text" id="telefone" placeholder="Telefone">
+
+    <button class="submit" type="submit">Cadastrar</button>
+</form>
+
+<div class="msg" id="msg"></div>
+
+</div>
+
+</div>
+
+<script src="login.js"></script>
+</body>
+</html>
+

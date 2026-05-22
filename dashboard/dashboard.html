@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="dashboard.css">
+<title>EcoAlerta | Dashboard 6.0</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+    <div class="logo">EcoAlerta</div>
+
+    <div class="menu">
+
+<a href="dashboard.html" class="active">
+    <span class="icon">📊</span>
+    <span>Dashboard</span>
+</a>
+
+<a href="../frontend/novo-report/novo-report.html">
+    <span class="icon">➕</span>
+    <span>Novo Reporte</span>
+</a>
+
+<a href="../frontend/meus-registros/meus-registros.html">
+    <span class="icon">📝</span>
+    <span>Meus Registros</span>
+</a>
+
+<a href="../frontend/conta/conta.html">
+    <span class="icon">👤</span>
+    <span>Minha Conta</span>
+</a>
+
+<a href="#chamadosAdmin" class="admin-only">
+    <span class="icon">🛠</span>
+    <span>Chamados</span>
+</a>
+
+<a href="#usuariosAdmin" class="admin-only">
+    <span class="icon">👥</span>
+    <span>Usuários</span>
+</a>
+
+<a href="../frontend/pagina inicial/index.html" onclick="logout()">
+    <span class="icon">🚪</span>
+    <span>Sair</span>
+</a>
+
+</div>
+
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topbar">
+<h1>Dashboard EcoAlerta</h1>
+
+<div class="actions">
+<button class="btn btn-theme" id="themeBtn" onclick="darkMode()">🌙 Dark Mode</button>
+<button class="btn" onclick="location.reload()">Atualizar dados</button>
+<button class="btn" onclick="exportar()">Exportar JSON</button>
+<button class="btn" onclick="limpar()">Limpar filtros</button>
+<button class="btn admin-only" onclick="document.getElementById('chamadosAdmin').scrollIntoView({behavior:'smooth'})">Chamados</button>
+<button class="btn admin-only" onclick="document.getElementById('usuariosAdmin').scrollIntoView({behavior:'smooth'})">Usuários</button>
+</div>
+</div>
+
+<!-- FILTROS -->
+<div class="filters">
+<input type="text" id="busca" placeholder="Buscar ocorrência...">
+<select id="status">
+<option value="">Status</option>
+<option>Aberto</option>
+<option>Em andamento</option>
+<option>Cancelado</option>
+<option value="Concluido">Concluído</option>
+</select>
+<select id="bairro">
+<option value="">Bairro</option>
+</select>
+<select id="tipo">
+<option value="">Tipo</option>
+</select>
+</div>
+
+<!-- CARDS -->
+<div class="cards">
+<div class="card c1"><h4>Total</h4><b id="total">0</b></div>
+<div class="card c2"><h4>Abertos</h4><b id="abertos">0</b></div>
+<div class="card c3"><h4>Em andamento</h4><b id="analise">0</b></div>
+<div class="card c4"><h4>Concluídos</h4><b id="concluidos">0</b></div>
+<div class="card c5"><h4>Críticos</h4><b id="criticos">0</b></div>
+</div>
+
+<!-- GRÁFICOS -->
+<div class="grid2">
+
+<div class="box">
+<h3>Eventos por Tipo</h3>
+<canvas id="bar"></canvas>
+</div>
+
+<div class="box">
+<h3>Evolução</h3>
+<canvas id="line"></canvas>
+</div>
+
+</div>
+
+<div class="grid3">
+
+<div class="box">
+<h3>Status</h3>
+<canvas id="pie"></canvas>
+</div>
+
+<div class="box">
+<h3>Mapa Inteligente</h3>
+<div id="map"></div>
+</div>
+
+<div class="box">
+<h3>Top Bairros</h3>
+<canvas id="bairroChart"></canvas>
+</div>
+
+</div>
+
+<div class="box admin-only" id="usuariosAdmin">
+<h3>Usuários do Sistema</h3>
+<div class="admin-help">
+Crie novos acessos e defina se a pessoa será Usuário, Vice-líder ou Admin.
+</div>
+<div class="admin-panel">
+<input type="text" id="novoUsuarioNome" placeholder="Nome">
+<input type="email" id="novoUsuarioEmail" placeholder="Email">
+<input type="password" id="novoUsuarioSenha" placeholder="Senha">
+<input type="text" id="novoUsuarioTelefone" placeholder="Telefone">
+<select id="novoUsuarioRole">
+<option value="user">Usuário</option>
+<option value="vice-lider">Vice-líder</option>
+<option value="admin">Admin</option>
+</select>
+<button class="btn" onclick="criarUsuarioAdmin()">Criar usuário</button>
+</div>
+<table class="user-table">
+<thead>
+<tr>
+<th>Nome</th>
+<th>Email</th>
+<th>Perfil</th>
+<th>Reportes</th>
+<th>Nova senha</th>
+<th>Ações</th>
+</tr>
+</thead>
+<tbody id="usuariosTbody"></tbody>
+</table>
+</div>
+
+<!-- TABELA -->
+<div class="box" id="chamadosAdmin">
+
+<h3>Lista de Eventos</h3>
+<div class="admin-help admin-only">
+Admin: altere o andamento de cada chamado na coluna Status.
+</div>
+
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Tipo</th>
+<th>Usuário</th>
+<th>Bairro</th>
+<th>Data</th>
+<th>Status</th>
+<th>Prioridade</th>
+<th class="admin-only">Ações</th>
+</tr>
+</thead>
+
+<tbody id="tbody"></tbody>
+
+</table>
+
+</div>
+
+</div>
+
+<div class="modal-chamado" id="modalChamado" onclick="fecharChamado(event)">
+<div class="modal-box" onclick="event.stopPropagation()">
+<div id="conteudoChamado"></div>
+</div>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>
+

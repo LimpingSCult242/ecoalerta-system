@@ -1,0 +1,149 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f172a,#1e293b);
+}
+
+.container{
+    width:950px;
+    height:550px;
+    background:#fff;
+    border-radius:18px;
+    overflow:hidden;
+    display:flex;
+    box-shadow:0 25px 40px rgba(0,0,0,0.25);
+}
+
+.left{
+    width:50%;
+    background:linear-gradient(135deg,#16a34a,#22c55e);
+    color:#fff;
+    padding:60px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.left h1{
+    font-size:42px;
+    margin-bottom:20px;
+}
+
+.left p{
+    font-size:18px;
+    line-height:1.6;
+    opacity:0.95;
+}
+
+.right{
+    width:50%;
+    padding:50px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.tabs{
+    display:flex;
+    background:#f1f5f9;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:30px;
+}
+
+.tabs button{
+    flex:1;
+    padding:14px;
+    border:none;
+    background:transparent;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.tabs button.active{
+    background:#16a34a;
+    color:#fff;
+}
+
+form{
+    display:none;
+}
+
+form.active{
+    display:block;
+}
+
+h2{
+    margin-bottom:20px;
+    color:#0f172a;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:14px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    outline:none;
+    transition:0.3s;
+}
+
+input:focus{
+    border-color:#16a34a;
+}
+
+.submit{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#16a34a;
+    color:#fff;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.submit:hover{
+    background:#15803d;
+}
+
+.msg{
+    margin-top:15px;
+    text-align:center;
+    font-weight:bold;
+    color:#16a34a;
+}
+
+@media(max-width:900px){
+
+.container{
+    width:95%;
+    height:auto;
+    flex-direction:column;
+}
+
+.left,.right{
+    width:100%;
+}
+
+.left{
+    padding:35px;
+}
+
+.right{
+    padding:35px;
+}
+
+}

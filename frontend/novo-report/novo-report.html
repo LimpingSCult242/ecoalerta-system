@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="novo-report.css">
+<title>EcoAlerta | Novo Reporte</title>
+
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+
+<div class="logo">EcoAlerta</div>
+
+<a href="../../dashboard/dashboard.html"><span class="icon">📊</span><span>Dashboard</span></a>
+<a href="#" class="active"><span class="icon">➕</span><span>Novo Reporte</span></a>
+<a href="../meus-registros/meus-registros.html"><span class="icon">📄</span><span>Meus Registros</span></a>
+<a href="../conta/conta.html"><span class="icon">👤</span><span>Minha Conta</span></a>
+<a href="../pagina inicial/index.html" onclick="logout()"><span class="icon">🚪</span><span>Sair</span></a>
+
+</div>
+
+<div id="toast">Operação realizada com sucesso!</div>
+
+<!-- MAIN -->
+<div class="main">
+
+<div class="topo">
+<h1>Novo Reporte</h1>
+<div class="user" id="nomeUser"></div>
+<button class="btn-theme" id="themeBtn" onclick="darkMode()">🌙 Dark Mode</button>
+</div>
+
+<div class="box">
+
+<form id="formReporte">
+
+<!-- SOBRE -->
+<div class="section">
+<h2>Sobre a Ocorrência</h2>
+
+<input type="text" id="titulo" placeholder="Título da ocorrência" required>
+
+<select id="categoria" required>
+<option value="">Selecione a categoria</option>
+<option>Vazamento de Água</option>
+<option>Falta de Água</option>
+<option>Desperdício de Energia</option>
+<option>Poste apagado</option>
+<option>Fio caído</option>
+<option>Lixo irregular</option>
+<option>Outro</option>
+</select>
+
+<select id="gravidade">
+<option>Baixa</option>
+<option>Média</option>
+<option>Alta</option>
+<option>Urgente</option>
+</select>
+
+<textarea id="descricao" rows="5" placeholder="Descreva detalhadamente..." required></textarea>
+</div>
+
+<!-- LOCALIZACAO -->
+<div class="section">
+<h2>Localização</h2>
+
+<div class="grid2">
+<input type="text" id="cidade" placeholder="Cidade">
+<input type="text" id="bairro" placeholder="Bairro">
+</div>
+
+<div class="grid2">
+<input type="text" id="rua" placeholder="Rua / Referência">
+<input type="text" id="cep" placeholder="CEP">
+</div>
+
+<input type="text" id="coords" placeholder="Localização GPS" readonly>
+
+<button type="button" onclick="pegarLocalizacao()">Usar minha localização atual</button>
+<button type="button" onclick="buscarLocalizacaoPorEndereco()">Buscar localização pelo endereço</button>
+</div>
+
+<!-- IMAGEM -->
+<div class="section">
+<h2>Evidência</h2>
+
+<input type="file" id="foto" accept="image/*">
+
+<img id="preview" class="preview">
+</div>
+
+<!-- EXTRA -->
+<div class="section">
+<h2>Informações Extras</h2>
+
+<div class="grid2">
+<input type="date" id="dataOcorrencia">
+<input type="time" id="horaOcorrencia">
+</div>
+</div>
+
+<button class="full" type="submit">Enviar Reporte</button>
+
+<div class="msg" id="msg"></div>
+
+</form>
+
+</div>
+
+</div>
+
+<script src="novo-report.js"></script>
+</body>
+</html>
+

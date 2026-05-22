@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="conta.css">
+<title>EcoAlerta | Minha Conta</title>
+
+</head>
+<body id="body">
+
+<div class="sidebar">
+
+<div class="logo">EcoAlerta</div>
+
+<a href="../../dashboard/dashboard.html"><span class="icon">📊</span><span>Dashboard</span></a>
+<a href="../novo-report/novo-report.html"><span class="icon">➕</span><span>Novo Reporte</span></a>
+<a href="../meus-registros/meus-registros.html"><span class="icon">📄</span><span>Meus Registros</span></a>
+<a href="#" class="active"><span class="icon">👤</span><span>Minha Conta</span></a>
+<a href="../pagina inicial/index.html" onclick="logout()"><span class="icon">🚪</span><span>Sair</span></a>
+
+</div>
+
+<div class="main">
+
+<div class="topo">
+<h1>Minha Conta</h1>
+<div class="user" id="topUser"></div>
+</div>
+
+<div class="grid">
+
+<!-- PERFIL -->
+<div class="card">
+
+<h2>Perfil</h2>
+
+<div class="avatar" id="avatar">G</div>
+
+<div class="row">
+<input type="text" id="nome" placeholder="Nome">
+<input type="email" id="email" placeholder="Email">
+</div>
+
+<div class="row">
+<input type="text" id="telefone" placeholder="Telefone">
+<input type="text" id="cidade" placeholder="Cidade">
+</div>
+
+<input type="password" id="senhaAtual"
+placeholder="Senha atual">
+
+<input type="password" id="novaSenha"
+placeholder="Nova senha">
+
+<input type="password" id="confirmarSenha"
+placeholder="Confirmar nova senha">
+
+<button class="btn save" onclick="salvar()">
+Salvar altera&ccedil;&otilde;es
+</button>
+
+<div class="msg" id="msg"></div>
+
+</div>
+
+<!-- PAINEL -->
+<div class="card">
+
+<h2>Painel da Conta</h2>
+
+<div class="stats">
+
+<div class="box">
+<h3>Total Reportes</h3>
+<b id="total">0</b>
+</div>
+
+<div class="box">
+<h3>Resolvidos</h3>
+<b id="resolvidos">0</b>
+</div>
+
+<div class="box">
+<h3>Pendentes</h3>
+<b id="pendentes">0</b>
+</div>
+
+<div class="box">
+<h3>&Uacute;ltimo login</h3>
+<b style="font-size:16px" id="ultimo">Hoje</b>
+</div>
+
+</div>
+
+<button class="btn dark" id="themeBtn" onclick="darkMode()">
+Alternar dark mode
+</button>
+
+<button class="btn logout" onclick="logout()">
+Sair da conta
+</button>
+
+<button class="btn delete" onclick="excluirConta()">
+Excluir conta
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<script src="conta.js"></script>
+</body>
+</html>
+

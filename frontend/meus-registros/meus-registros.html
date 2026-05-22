@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="meus-registros.css">
+<title>EcoAlerta | Meus Registros</title>
+
+</head>
+<body>
+
+<div class="sidebar">
+<div class="logo">EcoAlerta</div>
+
+<a href="../../dashboard/dashboard.html"><span class="icon">📊</span><span>Dashboard</span></a>
+<a href="../novo-report/novo-report.html"><span class="icon">➕</span><span>Novo Reporte</span></a>
+<a href="#" class="active"><span class="icon">📄</span><span>Meus Registros</span></a>
+<a href="../conta/conta.html"><span class="icon">👤</span><span>Minha Conta</span></a>
+<a href="../pagina inicial/index.html" onclick="logout()"><span class="icon">🚪</span><span>Sair</span></a>
+</div>
+
+<main class="main">
+<div class="topo">
+<h1>Meus Registros</h1>
+<div class="user" id="nomeUser"></div>
+<button class="btn btn-theme" id="themeBtn" onclick="darkMode()">🌙 Dark Mode</button>
+</div>
+
+<section class="box">
+<div class="intro">
+<div>
+<h2>Chamados abertos por voce</h2>
+</div>
+<a class="btn" href="../novo-report/novo-report.html">Novo reporte</a>
+</div>
+
+<div class="lista" id="listaChamados"></div>
+<article class="detalhe" id="detalheChamado"></article>
+</section>
+</main>
+
+<script src="meus-registros.js"></script>
+</body>
+</html>
+
